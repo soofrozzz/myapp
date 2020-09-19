@@ -1,0 +1,60 @@
+.leftDiv{
+  width: 30%;
+  float: left;
+  border-style: solid;
+  border-width: 100;
+}
+.rightDiv{
+  width: 65%;
+  float: right;
+  border-style: solid;
+  border-width: 100;
+}
+.userDiv{
+  border-style: solid;
+  border-width: 20;
+  border-color: green;
+}
+.detailsDiv{
+  border-style: solid;
+  border-width: 20;
+  border-color: blue;
+}
+
+.bgRed
+{
+  color : red
+}
+
+.bgBlue
+{
+  color : blue
+}
+
+.visibleStyle
+{
+  visibility : visible
+}
+
+.hiddenStyle
+{
+  visibility : hidden
+}
+.borderGreen 
+{
+  border-style: solid;
+  border-width: 100;
+  border-color: green;
+  width: 300px;
+
+}
+.borderRed 
+{
+  border-style: solid;
+  border-color: red
+}
+.borderBlue 
+{
+  border-style: solid;
+  border-color: blue
+}

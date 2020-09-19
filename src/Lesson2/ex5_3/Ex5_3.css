@@ -1,0 +1,32 @@
+.bgYellow
+{
+  background-color  : yellow
+}
+
+.bgGrey
+{
+  background-color : grey;
+  width : 200px
+}
+
+.bgRed
+{
+  background-color : red;
+  width : 280px
+}
+
+.bgOrange
+{
+  background-color: orange;
+  width : 170px
+}
+
+.visibleStyle
+{
+  visibility : visible
+}
+
+.hiddenStyle
+{
+  visibility : hidden
+}

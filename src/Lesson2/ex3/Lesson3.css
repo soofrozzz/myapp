@@ -1,0 +1,37 @@
+.bgRed
+{
+  color : red
+}
+
+.bgBlue
+{
+  color : blue
+}
+
+.visibleStyle
+{
+  visibility : visible
+}
+
+.hiddenStyle
+{
+  visibility : hidden
+}
+.borderGreen 
+{
+  border-style: solid;
+  border-width: 100;
+  border-color: green;
+  width: 300px;
+
+}
+.borderRed 
+{
+  border-style: solid;
+  border-color: red
+}
+.borderBlue 
+{
+  border-style: solid;
+  border-color: blue
+}
