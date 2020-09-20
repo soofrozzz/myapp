@@ -1,31 +1,14 @@
 import React,{useState,useEffect} from 'react'
 import home_utils from './home_utils'
 import './css.css'
-import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
-import DeleteIcon from '@material-ui/icons/Delete';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import KeyboardVoiceIcon from '@material-ui/icons/KeyboardVoice';
-import Icon from '@material-ui/core/Icon';
-import SaveIcon from '@material-ui/icons/Save';
-import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
 
-
-const useStyles = makeStyles((theme) => ({
-  button: {
-    margin: theme.spacing(1),
-  },
-}));
 
 const UserComp = (props) => {   
   
   const [users, setUsers] = useState([])
   const [todos, setTodos] = useState([])
   const [todoStatus, settodoStatus] = useState([])
-
-  const classes = useStyles();
-
-
+  const [isToggled, setToggled] = useState('hiddenStyle');
 
   useEffect(() => {
       setUsers(props.users)
@@ -54,26 +37,30 @@ const UserComp = (props) => {
         status = todo.completed == true ? 'borderGreen' : 'borderRed'
       }
     })
+    console.log(status)
     return status
   }
+
+  const hoverDisplay = (display) =>{
+    let current = display == true ? 'visibleStyle' : 'hiddenStyle'
+    setToggled(current)
+    console.log(isToggled)
+  }
+
   let items = users.map((item,index) => {
     return <div key={index}>
       <div className={userTodoSttatus(item)}>
         ID : {item.id}<br/>
         Name : {item.name}<br/>
         Email : {item.email}<br/>
-        <button 
-          className={classes.button}
-          variant="contained"
-          color="primary"
-          endIcon={<Icon>send</Icon>}
-        >
-          Other Data</button>
+        <button className='alignLeft' onMouseOver={()=>{hoverDisplay(true)}} onMouseOut={()=>{hoverDisplay(false)}}>More</button>
         <button className='alignRight'>Update</button>
         <button className='alignRight'>Delete</button>
       </div>
-      <div >
-
+        <div className={isToggled}>
+        Street : {item.address.street}<br/>
+        City : {item.address.city}<br/>
+        Zipcode : {item.address.zipcode}<br/>
       </div>
       <br/>
     </div>

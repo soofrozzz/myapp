@@ -1,4 +1,4 @@
-
+/* 
 .visibleStyle
 {
   visibility : visible
@@ -7,6 +7,17 @@
 .hiddenStyle
 {
   visibility : hidden
+} */
+
+
+.visibleStyle
+{
+  display: block;
+}
+
+.hiddenStyle
+{
+display: none;
 }
 
 .borderGreen 
