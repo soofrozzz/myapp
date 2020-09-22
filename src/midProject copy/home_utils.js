@@ -6,7 +6,7 @@ import axios from 'axios'
 const getUsers = async () =>{
   let resp = await axios.get("https://jsonplaceholder.typicode.com/users/")
   let users = resp.data
-  // console.log(users)
+  console.log(users)
   return users
 }
 

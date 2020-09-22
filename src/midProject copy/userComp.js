@@ -28,14 +28,14 @@ const UserComp = (props) => {
     })
    settodoStatus(userIdandStatus)
   },[todos])
-  
+
   let items = users.map((user,index) => {
     if(users!==undefined || users.length!==0){
       return <div key={index}>
-        <SubUserComp todoStatus={todoStatus.filter(x => x.userId === user.id)} user={user}/>
+        <SubUserComp todos={todos} todoStatus={todoStatus} user={user}/>
       </div>
     }
-    console.log(user, index)
+    console.log(users, user, index)
   })
 
   return(
