@@ -1,32 +1,28 @@
 import React,{useState,useEffect} from 'react'
 import './css.css'
 
-
 const SubUserComp = (props) => {
 
-  const [user, setUser] = useState(props.user)
-  const [todoStatus, settodoStatus] = useState(props.todoStatus)
+  const [user] = useState(props.user)
+  const [todoStatus] = useState(props.todoStatus)
   const [isToggled, setToggled] = useState('hiddenStyle')
   const [todoCompleted, setTodoCompleted] = useState('')
   const [update, setUpdate] = useState({name:'',email:'',street:'',city:'',zipcode:''})
 
+  const hoverDisplay = (display) => setToggled(display ? 'visibleStyle' : 'hiddenStyle')
 
-  const findUncompleted = (list) => {
-    const isCompleted = list.find(item => item.completed === false);
-    return isCompleted.completed
+  const isTodoCompleted = (array) => {
+    const list = array.find(item => item.completed === false);
+    return list.length ? 'borderRed' : 'borderGreen';
   }
 
   useEffect(() => {
-    const hasFalse = findUncompleted(todoStatus)
-    setTodoCompleted(hasFalse ? 'borderRed' : 'borderGreen')
-  },[todoStatus.length])
+    const getClassName = isTodoCompleted(todoStatus)
+    setTodoCompleted(getClassName)
+  },[todoStatus])
 
-  const hoverDisplay = (display) =>{
-    const displayClass = display? 'visibleStyle' : 'hiddenStyle';
-    setToggled(displayClass)
-  }
 
-  const item = todoStatus.length > 0 ?
+    const item = todoStatus.length > 0 ?
     <div>
       <div className={todoCompleted}>
         ID : {user.id}<br/>

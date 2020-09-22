@@ -1,44 +1,32 @@
 import React,{useState,useEffect} from 'react'
 import home_utils from './home_utils'
-import './css.css'
 import SubUserComp from './subUserComp'
 import Loading from './Loading'
+import './css.css'
 
 const UserComp = (props) => {   
   
   const [users, setUsers] = useState([])
   const [todos, setTodos] = useState([])
   const [isLoading, setLoading] = useState(true)
-  const [todoStatus, settodoStatus] = useState([])
 
-  useEffect(() => {
-      setUsers(props.users)
-  },[props.users])
+const fetchData = async () =>{
+  const todos = await home_utils.getTodosAll();
+  setTodos(todos)
+  setLoading(false)
+}
 
-  useEffect(() => {
-    async function fetchData(){
-      let allTodos = await home_utils.getTodosAll()
-      setTodos(allTodos)
-      setLoading(false)
-    }
-    fetchData();
-   },[])
+useEffect(() => {
+  setUsers(props.users)
+  fetchData()
+},[props.users])
 
-  useEffect(() => {
-    let userIdandStatus = todos.map(item =>{
-    let obj={userId : item.userId, completed : item.completed}
-    return obj
-    })
-   settodoStatus(userIdandStatus)
-  },[todos])
-  
-  let items = users.map((user,index) => {
-    if(users!==undefined || users.length!==0){
+   const items = users.map( (user,index) => {
+    if(users){
       return <div key={index}>
-        <SubUserComp todoStatus={todoStatus.filter(x => x.userId === user.id)} user={user}/>
+        <SubUserComp todoStatus={todos.filter(x => x.userId === user.id)} user={user}/>
       </div>
     }
-    console.log(user, index)
   })
 
   return(
@@ -46,8 +34,6 @@ const UserComp = (props) => {
     ? <div><Loading/></div>
     : <div> {items} </div>
   )
-  
-}
-
+  }
 
 export default UserComp;
