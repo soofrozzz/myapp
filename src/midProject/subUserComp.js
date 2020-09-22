@@ -3,33 +3,30 @@ import './css.css'
 
 
 const SubUserComp = (props) => {
-  // const [user, setUser] = useState([])
-  // const [todoStatus, settodoStatus] = useState([])
+
   const [user, setUser] = useState(props.user)
   const [todoStatus, settodoStatus] = useState(props.todoStatus)
   const [isToggled, setToggled] = useState('hiddenStyle')
   const [todoCompleted, setTodoCompleted] = useState('')
   const [update, setUpdate] = useState({name:'',email:'',street:'',city:'',zipcode:''})
 
-  // useEffect(() => {
-  //   setUser(props.user)
-  //   settodoStatus(props.todoStatus)
-  // },[props.user.values, props.user.todoStatus])
+
+  const findUncompleted = (list) => {
+    const isCompleted = list.find(item => item.completed === false);
+    return isCompleted.completed
+  }
 
   useEffect(() => {
-    let hasFalse = todoStatus.find(x => x.completed == false)
-    console.log(hasFalse)
-    let status = hasFalse ? 'borderRed' : 'borderGreen'
-    setTodoCompleted(status)
-    console.log(status)
+    const hasFalse = findUncompleted(todoStatus)
+    setTodoCompleted(hasFalse ? 'borderRed' : 'borderGreen')
   },[todoStatus.length])
 
   const hoverDisplay = (display) =>{
-    let displayClass = display == true ? 'visibleStyle' : 'hiddenStyle'
+    const displayClass = display? 'visibleStyle' : 'hiddenStyle';
     setToggled(displayClass)
   }
 
-  let item = todoStatus.length>0 ?
+  const item = todoStatus.length > 0 ?
     <div>
       <div className={todoCompleted}>
         ID : {user.id}<br/>
@@ -46,7 +43,7 @@ const SubUserComp = (props) => {
         </div>
       </div>
       <br/>
-    </div> : settodoStatus(props.todoStatus)
+    </div> : ''
 
   return(
     <div>
@@ -55,6 +52,5 @@ const SubUserComp = (props) => {
   )
   
 }
-
 
 export default SubUserComp;

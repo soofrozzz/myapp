@@ -2,11 +2,13 @@ import React,{useState,useEffect} from 'react'
 import home_utils from './home_utils'
 import './css.css'
 import SubUserComp from './subUserComp'
+import Loading from './Loading'
 
 const UserComp = (props) => {   
   
   const [users, setUsers] = useState([])
   const [todos, setTodos] = useState([])
+  const [isLoading, setLoading] = useState(true)
   const [todoStatus, settodoStatus] = useState([])
 
   useEffect(() => {
@@ -17,6 +19,7 @@ const UserComp = (props) => {
     async function fetchData(){
       let allTodos = await home_utils.getTodosAll()
       setTodos(allTodos)
+      setLoading(false)
     }
     fetchData();
    },[])
@@ -39,9 +42,9 @@ const UserComp = (props) => {
   })
 
   return(
-    <div>
-      {items}
-    </div>
+    isLoading
+    ? <div><Loading/></div>
+    : <div> {items} </div>
   )
   
 }
