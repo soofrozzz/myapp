@@ -7,16 +7,17 @@ const HomePage = (props) => {
   const [users, setUsers] = useState([])
   const [search, setSearch] = useState('')
 
-  useEffect(() => {
-    async function fetchData(){
-      let users = await home_utils.getUsers()
-      if(search){
-        users = home_utils.search(users,search)
-      }
-      setUsers(users)
+  const fetchData = async () => {
+    let users = await home_utils.getUsers();
+    if(search){
+      users = home_utils.search(users, search)
     }
+    setUsers(users);
+  }
+
+  useEffect(() => {
     fetchData();
-   },[search])
+   },)
 
   return(
     <div>
@@ -29,6 +30,5 @@ const HomePage = (props) => {
   )
   
 }
-
 
 export default HomePage;
